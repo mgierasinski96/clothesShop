@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC 
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+       
+<tiles-definitions>
+    <!-- w base.definition okreslamy takie parametry jak
+    <put-attribute name="title" />
+        <put-attribute name="styles" value="base.styles.styles" cascade="true" />
+        <put-attribute name="header" value="/WEB-INF/page/common/header.jsp" />
+        <put-attribute name="body" />
+        <put-attribute name="scripts" value="base.scripts.scripts" cascade="true" />
+        <put-attribute name="footer" value="/WEB-INF/page/common/footer.jsp" />
+        -->
+    <definition name="base.definition"
+        template="/views/layout.jsp">
+        <put-attribute name="title" value="" />
+
+
+    </definition>
+
+
+    <definition name="helloWorld" extends="base.definition">
+        <put-attribute name="title" value="HelloWorld" />
+        <put-attribute name="body" value="/views/helloWorld.jsp" />
+    </definition>
+
+
+
+
+ 
+</tiles-definitions>
+
+
