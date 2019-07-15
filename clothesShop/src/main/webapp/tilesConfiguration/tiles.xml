@@ -15,17 +15,29 @@
         -->
     <definition name="base.definition"
         template="/views/layout.jsp">
+        <put-attribute name="body" value="/views/mainBody.jsp"/>
+        <put-attribute name="header" value="/views/header.jsp" />
+        <put-attribute name="footer" value="/views/footer.jsp" />
         <put-attribute name="title" value="" />
 
 
     </definition>
 
 
-    <definition name="helloWorld" extends="base.definition">
-        <put-attribute name="title" value="HelloWorld" />
-        <put-attribute name="body" value="/views/helloWorld.jsp" />
+    <definition name="mainBody" extends="base.definition">
+        <put-attribute name="title" value="MainBody" />
+        <put-attribute name="body" value="/views/mainBody.jsp" />
     </definition>
 
+    <definition name="addProduct" extends="base.definition">
+        <put-attribute name="title" value="AddProduct" />
+        <put-attribute name="body" value="/views/addProduct.jsp" />
+    </definition>
+
+    <definition name="showAllProducts" extends="base.definition">
+        <put-attribute name="title" value="ShowAllProducts" />
+        <put-attribute name="body" value="/views/showAllProducts.jsp" />
+    </definition>
 
 
 

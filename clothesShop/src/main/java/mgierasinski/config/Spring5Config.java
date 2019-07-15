@@ -1,11 +1,16 @@
 package mgierasinski.config;
 
 
+import mgierasinski.utils.ProductConverter;
+import mgierasinski.utils.QuantityConverter;
+import org.hibernate.SessionFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
@@ -72,6 +77,32 @@ public class Spring5Config implements WebMvcConfigurer {
         registry.addInterceptor(interceptor);
     }
 
+    @Override
+    public void addFormatters(FormatterRegistry formatterRegistry)
+    {
+
+        formatterRegistry.addConverter(getMyQuantityConverter());
+        formatterRegistry.addConverter(getMyProductConverter());
+
+    }
+
+    @Bean
+    public QuantityConverter getMyQuantityConverter() {
+        return new QuantityConverter();
+    }
+
+    @Bean
+    public ProductConverter getMyProductConverter() {
+        return new ProductConverter();
+    }
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver getCommonsMultipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(20971520);   // 20MB
+        multipartResolver.setMaxInMemorySize(1048576);  // 1MB
+        return multipartResolver;
+    }
 
 
 

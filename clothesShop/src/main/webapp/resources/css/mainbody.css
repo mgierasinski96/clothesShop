@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+
+.center{
+    position:absolute;
+    top:10%;
+    font-size: large;
+    right: 50%;
+}
+
+.topleftcorner{
+    position:absolute;
+    top:10%;
+    font-size: large;
+    left:2%;
+}
+
+.underemporio{
+    position:absolute;
+    top:23%;
+    font-size: large;
+    left:2%;
+}
+
+
+
+
+body {
+    color: black;
+    background-size: auto;
+}
+
