@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ProductService {
 
+    List<Product> listAccurateProduct(String typProduktu);
+
      Blob getPhotoById(long id);
 
     Product findById(long id);
@@ -24,5 +26,7 @@ public interface ProductService {
     void insertQS(String quantity,String size,long pId);
 
     List<Product> listProductsWithSizes();
+
+
 
 }

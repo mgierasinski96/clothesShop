@@ -28,6 +28,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional
+    public List<Product> listAccurateProduct(String typProduktu) {
+        return productRepository.listAccurateProduct(typProduktu);
+    }
+
+    @Transactional
     public Blob getPhotoById(long id) {
 
         String query = "select p.picture from product p where p.productId=?";

@@ -4,19 +4,13 @@ package mgierasinski.controller;
 import mgierasinski.domain.Product;
 import mgierasinski.service.ProductService;
 import mgierasinski.service.QuantityService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.util.List;
 
 
@@ -84,16 +78,23 @@ public class ProductController {
         return "redirect:/showAllProducts.html";
     }
 
-    @RequestMapping(value = "/getStudentPhoto/{id}")
-    public void getStudentPhoto(HttpServletResponse response, @PathVariable("id") long id) throws Exception {
-        response.setContentType("image/jpeg");
+    @RequestMapping(value = "/showSpecificProduct/{productId}")
+    public String showProduct(@RequestParam("productId") long id,Model model) {
 
-        Blob ph = productService.getPhotoById(id);
 
-        byte[] bytes = ph.getBytes(1, (int) ph.length());
-        InputStream inputStream = new ByteArrayInputStream(bytes);
-        IOUtils.copy(inputStream, response.getOutputStream());
+        Product product=productService.getProduct(id);
+        System.out.println(product.getName());
+        model.addAttribute("product",product);
+        model.addAttribute("quantity",quantityService.selectAllForProduct(id));
+
+        System.out.println(quantityService.selectAllForProduct(id).size());
+
+
+        return "showSpecificProduct";
+
+
     }
+
 
 
 }

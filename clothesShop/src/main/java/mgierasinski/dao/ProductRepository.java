@@ -27,4 +27,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Transactional
     List<Product> listProductsWithSizes();
 
+    @Query(value="SELECT * FROM clothesshop_tracker.product p where  p.productType=:typUbrania",nativeQuery = true)
+    @Transactional
+    List<Product> listAccurateProduct(@Param("typUbrania") String typUbrania);
+
 }

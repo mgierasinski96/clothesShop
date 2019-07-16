@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class QuantityServiceImpl implements QuantityService {
@@ -22,5 +24,10 @@ public class QuantityServiceImpl implements QuantityService {
     @Transactional
     public void removePrevious(long productId) {
         quantityRepostitory.deletePrevious(productId);
+    }
+
+    @Transactional
+    public List<Quantity> selectAllForProduct(long productId) {
+        return quantityRepostitory.selectAllForProduct(productId);
     }
 }

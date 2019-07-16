@@ -1,8 +1,3 @@
-<%@ page import="java.sql.*" %>
-
-<%@ page import="java.sql.*"%>
-<%@ page import="java.io.*"%>
-<%@ page import="java.io.OutputStream" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -53,18 +48,15 @@
         <tr>
 
 
-            <td><img width="100" height="100" src="getStudentPhoto/<c:out value='${product.id}'/>"></td>
+            <td><img width="100" height="100" src="getProductPhoto/<c:out value='${product.id}'/>"></td>
             <td>${product.name}</td>
             <td> ${product.price}</td>
             <td> ${product.productType}</td>
             <td>
             <c:forEach items="${product.quantity}" var="productSize">
-                <c:if test="${productSize.quantity == null}">
-                ${productSize.size}-BRAK TOWARU
-            </c:if>
-                <c:if test="${productSize.size != null}">
+
             ${productSize.size}-${productSize.quantity}szt
-                </c:if>
+
             </c:forEach>
             </td>
             <td><a href="newProduct.html?productId=${product.id}">Edytuj</a>

@@ -39,6 +39,23 @@
         <put-attribute name="body" value="/views/showAllProducts.jsp" />
     </definition>
 
+    <definition name="spodnie" extends="base.definition">
+        <put-attribute name="title" value="Spodnie" />
+        <put-attribute name="body" value="/views/spodnie.jsp" />
+    </definition>
+
+
+    <definition name="bluzy" extends="base.definition">
+        <put-attribute name="title" value="Bluzy" />
+        <put-attribute name="body" value="/views/bluzy.jsp" />
+    </definition>
+
+
+    <definition name="showSpecificProduct" extends="base.definition">
+        <put-attribute name="title" value="ShowSpecificProduct" />
+        <put-attribute name="body" value="/views/showSpecificProduct.jsp" />
+    </definition>
+
 
 
  
