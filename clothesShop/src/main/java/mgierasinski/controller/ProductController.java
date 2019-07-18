@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class ProductController {
         return "addProduct";
     }
 
+
     @RequestMapping(method = RequestMethod.POST, value = "/addNewProduct")
     public String addNewProduct(@ModelAttribute("product") Product product, @RequestParam CommonsMultipartFile[] fileUpload, @RequestParam("quantity") String quantity,
                                 @RequestParam("size") List<String> sizes) {
@@ -69,6 +71,37 @@ public class ProductController {
         return "showAllProducts";
     }
 
+    @RequestMapping(value = "/showAllProductsOrderByName")
+    public String showAllProductsOrderByName(Model model) {
+        model.addAttribute("allProducts", productService.listProductsOrderName());
+
+
+        return "showAllProducts";
+    }
+
+    @RequestMapping(value = "/showAllProductsOrderByNameDesc")
+    public String showAllProductsOrderByNameDesc(Model model) {
+        model.addAttribute("allProducts", productService.listProductsOrderNameDesc());
+
+
+        return "showAllProducts";
+    }
+
+    @RequestMapping(value = "/showAllProductsOrderByPrice")
+    public String showAllProductsOrderByPrice(Model model) {
+        model.addAttribute("allProducts", productService.listProductsOrderPrice());
+
+        return "showAllProducts";
+    }
+
+    @RequestMapping(value = "/showAllProductsOrderByPriceDesc")
+    public String showAllProductsOrderByPriceDesc(Model model) {
+        model.addAttribute("allProducts", productService.listProductsOrderPriceDesc());
+
+        return "showAllProducts";
+    }
+
+
     @RequestMapping("/delete/{productId}")
     public String deleteProduct(@PathVariable("productId") Long productId) {
 
@@ -79,13 +112,13 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/showSpecificProduct/{productId}")
-    public String showProduct(@RequestParam("productId") long id,Model model) {
+    public String showProduct(@RequestParam("productId") long id, Model model) {
 
 
-        Product product=productService.getProduct(id);
+        Product product = productService.getProduct(id);
         System.out.println(product.getName());
-        model.addAttribute("product",product);
-        model.addAttribute("quantity",quantityService.selectAllForProduct(id));
+        model.addAttribute("product", product);
+        model.addAttribute("quantity", quantityService.selectAllForProduct(id));
 
         System.out.println(quantityService.selectAllForProduct(id).size());
 
@@ -95,6 +128,19 @@ public class ProductController {
 
     }
 
+    @RequestMapping(value = "/changeProductQuantity")
+    public String changeProductQuantity(@RequestParam("productId") long id, @RequestParam("zmienSzt") String szt,
+                                        @RequestParam("zmienRozmiar") String rozmiar, HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
+
+
+        System.out.println(id);
+        System.out.println(szt);
+        System.out.println(rozmiar);
+        quantityService.changeOnlyProductQuantity(id, szt, rozmiar);
+
+        return "redirect:" + referer;
+    }
 
 
 }

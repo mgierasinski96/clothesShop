@@ -80,9 +80,28 @@ public class ProductServiceImpl implements ProductService {
         productRepository.insertQS(quantity,pId,size);
     }
 
-    @Override
+    @Transactional
     public List<Product> listProductsWithSizes() {
         return productRepository.listProductsWithSizes();
+    }
+
+    @Transactional
+    public List<Product> listProductsOrderName() {
+        return productRepository.listProductsOrderName();
+    }
+    @Transactional
+    public List<Product> listProductsOrderNameDesc() {
+        return productRepository.listProductsOrderNameDesc();
+    }
+
+    @Transactional
+    public List<Product> listProductsOrderPrice() {
+        return productRepository.listProductsOrderPrice();
+    }
+
+    @Transactional
+    public List<Product> listProductsOrderPriceDesc() {
+        return productRepository.listProductsOrderPriceDesc();
     }
 
 

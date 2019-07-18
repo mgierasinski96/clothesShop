@@ -31,4 +31,22 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Transactional
     List<Product> listAccurateProduct(@Param("typUbrania") String typUbrania);
 
+    @Query(value="select * from product p order by p.productName",nativeQuery = true)
+    @Transactional
+    List<Product> listProductsOrderName();
+
+    @Query(value="select * from product p order by p.productName desc",nativeQuery = true)
+    @Transactional
+    List<Product> listProductsOrderNameDesc();
+
+    @Query(value="select * from product p order by abs(p.productPrice)",nativeQuery = true)
+    @Transactional
+    List<Product> listProductsOrderPrice();
+
+    @Query(value="select * from product p order by abs(p.productPrice) desc",nativeQuery = true)
+    @Transactional
+    List<Product> listProductsOrderPriceDesc();
+
+
+
 }

@@ -26,4 +26,10 @@ public interface QuantityRepostitory  extends JpaRepository<Quantity,Long> {
     @Query(value = "select * from quantityandsize where productId=:productId",nativeQuery = true)
     List<Quantity> selectAllForProduct(@Param("productId") long productId);
 
+
+    @Transactional
+    @Modifying
+    @Query(value = "update quantityandsize qs set qs.quantity=:szt where qs.size=:rozmiar and productId=:productId",nativeQuery = true)
+    void changeOnlyProductQuantity(@Param("productId") long productId,@Param("szt") String szt,@Param("rozmiar") String rozmiar);
+
 }

@@ -3,8 +3,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <style>
@@ -35,9 +35,6 @@
 
     }
 
-
-
-
     </style>
     <link href="http://pl.allfont.net/allfont.css?fonts=arial-black" rel="stylesheet" type="text/css" />
     <p class="ab36"> Ilość produktów  ${bluzySize} </p>
@@ -66,7 +63,6 @@
     }
     %>
     </c:forEach>
-
 
 </table>
 

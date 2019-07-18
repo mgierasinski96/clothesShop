@@ -9,7 +9,7 @@ public interface ProductService {
 
     List<Product> listAccurateProduct(String typProduktu);
 
-     Blob getPhotoById(long id);
+    Blob getPhotoById(long id);
 
     Product findById(long id);
 
@@ -23,10 +23,15 @@ public interface ProductService {
 
     Product getProduct(long id);
 
-    void insertQS(String quantity,String size,long pId);
+    void insertQS(String quantity, String size, long pId);
 
     List<Product> listProductsWithSizes();
 
+    List<Product> listProductsOrderName();
+    List<Product> listProductsOrderNameDesc();
 
+    List<Product> listProductsOrderPrice();
+
+    List<Product> listProductsOrderPriceDesc();
 
 }

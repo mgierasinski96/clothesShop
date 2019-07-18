@@ -30,4 +30,9 @@ public class QuantityServiceImpl implements QuantityService {
     public List<Quantity> selectAllForProduct(long productId) {
         return quantityRepostitory.selectAllForProduct(productId);
     }
+
+    @Override
+    public void changeOnlyProductQuantity(long productId, String szt, String rozmiar) {
+        quantityRepostitory.changeOnlyProductQuantity(productId,szt,rozmiar);
+    }
 }

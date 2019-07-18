@@ -1,6 +1,8 @@
 package mgierasinski.config;
 
 
+import mgierasinski.utils.AppUserRoleConverter;
+import mgierasinski.utils.AppUserRoleListConverter;
 import mgierasinski.utils.ProductConverter;
 import mgierasinski.utils.QuantityConverter;
 import org.hibernate.SessionFactory;
@@ -83,6 +85,8 @@ public class Spring5Config implements WebMvcConfigurer {
 
         formatterRegistry.addConverter(getMyQuantityConverter());
         formatterRegistry.addConverter(getMyProductConverter());
+        formatterRegistry.addConverter(getMyUserRoleConverter());
+        formatterRegistry.addConverter(getMyUserRoleListConverter());
 
     }
 
@@ -96,6 +100,18 @@ public class Spring5Config implements WebMvcConfigurer {
         return new ProductConverter();
     }
 
+    @Bean
+    public AppUserRoleConverter getMyUserRoleConverter() {
+        return new AppUserRoleConverter();
+    }
+
+    @Bean
+    public AppUserRoleListConverter getMyUserRoleListConverter() {
+        return new AppUserRoleListConverter();
+    }
+
+
+    //photo
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getCommonsMultipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();

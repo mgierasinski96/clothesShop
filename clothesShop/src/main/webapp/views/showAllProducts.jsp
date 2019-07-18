@@ -22,7 +22,9 @@
                 wrapper.style.height = height + "px";
             }
         }
+
     </script>
+
     <link rel="stylesheet" type="text/css" href="../resources/css/mainbody.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -30,20 +32,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body onload="makeTableScroll();">
+
 <div class="scrollingTable">
 
     <table class="table table-striped" border="1">
+
         <thead>
         <tr>
             <th scope="col">Podgląd</th>
-            <th scope="col">Nazwa</th>
-            <th scope="col">Cena</th>
+            <th scope="col">Nazwa <a href="/showAllProductsOrderByName">&darr;</a> <a href="/showAllProductsOrderByNameDesc">&uarr;</a></th>
+            <th scope="col">Cena <a href="/showAllProductsOrderByPriceDesc">&darr;</a> <a href="/showAllProductsOrderByPrice">&uarr;</a></th>
             <th scope="col">Typ</th>
             <th scope="col">Dostępne rozmiary</th>
             <th scope="col">Akcja</th>
         </tr>
         </thead>
         <c:forEach items="${allProducts}" var="product">
+        <form action="/changeProductQuantity" >
         <tbody>
         <tr>
 
@@ -57,7 +62,12 @@
 
             ${productSize.size}-${productSize.quantity}szt
 
+
             </c:forEach>
+                <input type="hidden" value="${product.id}" name="productId">
+                <input type="text" size="3" value="rozmiar" maxlength="2" name="zmienRozmiar">
+                <input type="text" size="2" value="szt" name="zmienSzt">
+                <input type="submit" name="submit" value="Potwierdź">
             </td>
             <td><a href="newProduct.html?productId=${product.id}">Edytuj</a>
             <a href="delete/${product.id}.html"
@@ -66,6 +76,7 @@
         </tr>
 
         </tbody>
+        </form>
         </c:forEach>
     </table>
 

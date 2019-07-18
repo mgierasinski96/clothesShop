@@ -56,6 +56,16 @@
         <put-attribute name="body" value="/views/showSpecificProduct.jsp" />
     </definition>
 
+    <definition name="registerAppUser" extends="base.definition">
+        <put-attribute name="title" value="RegisterAppUser" />
+        <put-attribute name="body" value="/views/registerAppUser.jsp" />
+    </definition>
+
+    <definition name="accessDenied" extends="base.definition">
+        <put-attribute name="title" value="AccessDenied" />
+        <put-attribute name="body" value="/views/accessDenied.jsp" />
+    </definition>
+
 
 
  
