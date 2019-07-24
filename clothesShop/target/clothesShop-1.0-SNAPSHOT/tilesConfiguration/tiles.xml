@@ -66,6 +66,11 @@
         <put-attribute name="body" value="/views/accessDenied.jsp" />
     </definition>
 
+    <definition name="successfulRegistration" extends="base.definition">
+        <put-attribute name="title" value="SuccesfulRegistration" />
+        <put-attribute name="body" value="/views/successfulRegistration.jsp" />
+    </definition>
+
 
 
  

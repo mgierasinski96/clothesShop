@@ -66,6 +66,22 @@
         <put-attribute name="body" value="/views/accessDenied.jsp" />
     </definition>
 
+    <definition name="successfulRegistration" extends="base.definition">
+        <put-attribute name="title" value="SuccesfulRegistration" />
+        <put-attribute name="body" value="/views/successfulRegistration.jsp" />
+    </definition>
+
+    <definition name="tokenExpired" extends="base.definition">
+        <put-attribute name="title" value="TokenExpired" />
+        <put-attribute name="body" value="/views/tokenExpired.jsp" />
+    </definition>
+
+
+    <definition name="accountActivated" extends="base.definition">
+        <put-attribute name="title" value="AccountActivated" />
+        <put-attribute name="body" value="/views/accountActivated.jsp" />
+    </definition>
+
 
 
  

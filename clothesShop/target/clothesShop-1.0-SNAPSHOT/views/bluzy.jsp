@@ -64,7 +64,6 @@
     %>
     </c:forEach>
 
-    </c:forEach>
 </table>
 
 </body>

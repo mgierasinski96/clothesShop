@@ -18,7 +18,7 @@ public interface AppUserService {
 
     List<AppUser> listAppUser();
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     void removeAppUser(long id);
 
     AppUser getAppUser(long id);

@@ -54,10 +54,12 @@
             <%--</li>--%>
 
             <li class="nav-item dropdown">
+<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
                 <a class="nav-link dropdown-toggle" href="" id="navbarDropdownZarządzaj" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Zarządzaj
                 </a>
+</sec:authorize>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/showAllProducts">Pokaż wszystkie produkty</a>
                     <a class="dropdown-item" href="/newProduct">Dodaj nowy produkt</a>

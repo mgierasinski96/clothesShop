@@ -12,7 +12,12 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
+    <!------ CAPTCHA ---------->
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+
 <style>
+
     div.row {
         width: 500px;
         margin-left: auto;
@@ -29,8 +34,8 @@
 </style>
 </head>
 <body>
-
-
+<form:form method="post" action="addAppUser.html" modelAttribute="appUser">
+    <form:hidden path="userId"/>
 <div class="container">
     <h1 class="well " align="center">Formularz rejestracyjny</h1>
     <div class="col-lg-12 well">
@@ -39,52 +44,74 @@
                 <div class="col-sm-12">
                     <div class="row">
                         <div class="col-sm-6 form-group" >
-                            <label>Imię</label>
-                            <input type="text" placeholder="Wpisz imię..." class="form-control">
+
+
+                            <form:label path="firstName">Imię</form:label>
+                            </p>
+                            <form:input path="firstName" placeholder="Wpisz imię..."/>
+                            <form:errors path="firstName"/>
                         </div>
                         <div class="col-sm-6 form-group">
-                            <label>Nazwisko</label>
-                            <input type="text" placeholder="Wpisz nazwisko..." class="form-control">
+                           <form:label path="lastName">Nazwisko</form:label>
+                            </p>
+                            <form:input path="lastName" placeholder="Wpisz nazwisko..."/>
+                            <form:errors path="lastName"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 form-group">
-                            <label>Login</label>
-                            <input type="text" placeholder="Wpisz login..." class="form-control">
+                            <form:label path="login">Login</form:label>
+                            </p>
+                            <form:input path="login" placeholder="Wpisz login..."/>
+                            <form:errors path="login"/>
                         </div>
                         <div class="col-sm-6 form-group">
-                            <label>Hasło</label>
-                            <input type="text" placeholder="Wpisz hasło..." class="form-control">
+                            <form:label path="password">Hasło</form:label>
+                            </p>
+                            <form:input type="password" path="password" placeholder="Wpisz hasło..."/>
+                            <form:errors path="password"/>
                         </div>
 
                     </div>
 
                     <div class="row">
                         <div class="form-group">
-                            <label>Adres</label>
-                            <textarea placeholder="Wpisz adres..." rows="3" class="form-control"></textarea>
+                            <form:label path="address">Adres</form:label>
+                            </p>
+                            <form:input size="61" path="address" placeholder="Wpisz adres..."/>
+                            <form:errors path="address"/>
                         </div>
                     </div>
 
 
                     <div class="row">
                         <div class="form-group">
-                            <label>Numer telefonu</label>
-                            <input type="text" placeholder="Wpisz numer telefonu..." class="form-control">
+                            <form:label path="telephone">Numer telefonu</form:label>
+                            </p>
+                            <form:input size="61" path="telephone" placeholder="Wpisz numer telefonu..."/>
+                            <form:errors path="telephone"/>
                         </div>
                         <div class="form-group">
-                            <label>Adres email</label>
-                            <input type="text" placeholder="Wpisz email..." class="form-control">
+                            <form:label path="email">Email</form:label>
+                            </p>
+                            <form:input size="61" path="email" placeholder="Wpisz email..."/>
+                            <form:errors path="email"/>
                         </div>
 
                     </div>
 
+                    <div class="row">
+                            <div class="g-recaptcha" data-sitekey="6LduKaoUAAAAAOaMRt2snyydZbP5fSl26KlHY5v2"></div>
 
-                    <button type="button" class="btn btn-lg btn-info">Zarejestruj</button>
+                    </div>
+
+
+                    <input type="submit" class="btn btn-lg btn-info" value="Zarejestruj"/>
                 </div>
             </form>
         </div>
     </div>
 </div>
+</form:form>
 </body>
 </html>

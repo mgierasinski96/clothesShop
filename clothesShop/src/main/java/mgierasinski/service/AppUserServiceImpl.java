@@ -5,6 +5,7 @@ import mgierasinski.dao.AppUserRoleRepository;
 import mgierasinski.domain.AppUser;
 import mgierasinski.domain.AppUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Transactional
     public void addAppUser(AppUser appUser) {
+        appUser.getAppUserRole().add(appUserRoleRepository.findByRole("ROLE_USER"));//przypisz role user
         appUser.setPassword(hashPassword(appUser.getPassword()));
         appUserRepository.save(appUser);
     }
@@ -68,6 +70,8 @@ public class AppUserServiceImpl implements AppUserService {
 
     public AppUser findByEmail(String email) { return appUserRepository.findByEmail(email); }
 
+    @Transactional
+    @Modifying
     public void activateAppUser(AppUser appUser) {
         appUser.setActivated(true);
         appUserRepository.save(appUser);
