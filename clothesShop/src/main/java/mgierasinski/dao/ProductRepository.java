@@ -47,6 +47,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Transactional
     List<Product> listProductsOrderPriceDesc();
 
+    @Query(value="select * from product p where p.productName like %:search% ",nativeQuery = true)
+    List<Product> searchForProducts(@Param("search") String search);
+
 
 
 }

@@ -34,4 +34,6 @@ public interface ProductService {
 
     List<Product> listProductsOrderPriceDesc();
 
+    List<Product> searchForProducts(String search);
+
 }

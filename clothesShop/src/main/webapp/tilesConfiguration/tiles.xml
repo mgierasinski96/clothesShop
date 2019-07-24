@@ -82,6 +82,11 @@
         <put-attribute name="body" value="/views/accountActivated.jsp" />
     </definition>
 
+    <definition name="searchProducts" extends="base.definition">
+        <put-attribute name="title" value="SearchProducts" />
+        <put-attribute name="body" value="/views/searchProducts.jsp" />
+    </definition>
+
 
 
  

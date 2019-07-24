@@ -104,6 +104,11 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.listProductsOrderPriceDesc();
     }
 
+    @Override
+    public List<Product> searchForProducts(String search) {
+        return productRepository.searchForProducts(search);
+    }
+
 
 }
 
