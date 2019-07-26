@@ -51,5 +51,8 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product> searchForProducts(@Param("search") String search);
 
 
+    @Query(value="select * from product p join user u join bag b where b.appUserIdBag=u.userId and b.productIdBag=p.productId and u.userId=:id",nativeQuery = true)
+    List<Product> showProductsInMyBag(@Param("id") long id);
+
 
 }

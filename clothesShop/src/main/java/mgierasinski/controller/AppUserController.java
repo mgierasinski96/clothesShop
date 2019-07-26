@@ -1,6 +1,7 @@
 package mgierasinski.controller;
 
 import mgierasinski.domain.AppUser;
+import mgierasinski.domain.Bag;
 import mgierasinski.domain.VerificationToken;
 import mgierasinski.service.AppUserService;
 import mgierasinski.service.EmailSenderService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AppUserController {
@@ -66,12 +69,15 @@ public class AppUserController {
         VerificationToken token = verificationTokenService.findByConfirmationToken(verificationToken);
         if (token != null) {
             AppUser appUser = appUserService.findByEmail(token.getAppUser().getEmail());
+
+
             appUserService.activateAppUser(appUser);
             return "accountActivated";
         } else {
             return "tokenExpired";
         }
     }
+
 
 
 }

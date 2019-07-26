@@ -65,8 +65,8 @@
 
             </c:forEach>
                 <input type="hidden" value="${product.id}" name="productId">
-                <input type="text" size="3" value="rozmiar" maxlength="2" name="zmienRozmiar">
-                <input type="text" size="2" value="szt" name="zmienSzt">
+                <input type="text" size="3" placeholder="rozmiar" maxlength="2" name="zmienRozmiar">
+                <input type="text" size="2" placeholder="szt" name="zmienSzt">
                 <input type="submit" name="submit" value="Potwierdź">
             </td>
             <td><a href="newProduct.html?productId=${product.id}">Edytuj</a>

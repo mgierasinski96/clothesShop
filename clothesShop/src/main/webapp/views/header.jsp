@@ -21,14 +21,39 @@
         .topright {
             position: absolute;
             top: 25%;
-            right: 2%;
+            right: 4%;
+        }
+
+        .topleftforLogged {
+            position: absolute;
+            top: 10%;
+            right: 0%;
+        }
+
+        .toprightWitaj{
+            position: absolute;
+            top: 25%;
+            right: 6%;
         }
 
         .centerSearch {
             position: absolute;
             top: 15%;
-            right: 40%;
+            right: 45%;
         }
+        .kontener {
+            position: relative;
+            text-align: center;
+            font-size: 36px;
+            color: red;
+        }
+        .wycentruj {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
     </style>
 </head>
 
@@ -42,6 +67,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+
             <li class="nav-item active">
                 <a class="nav-link" href="/.html">Strona główna<span class="sr-only">(current)</span></a>
             </li>
@@ -86,8 +112,8 @@
         </ul>
         <div class="centerSearch">
             <form class="form-inline my-2 my-lg-0" action="/szukam">
-                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" size="5">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Szukaj" aria-label="Search" size="5">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
             </form>
         </div>
         <!-- msg for login-->
@@ -97,11 +123,7 @@
             </script>
 
         </c:if>
-        <c:if test="${not empty msg}">
-
-            <div class="msg"><p class="text-primary">${msg}</p></div>
-
-        </c:if>
+      
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <script>
                 function formSubmit() {
@@ -114,17 +136,18 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
 
+            <div class="toprightWitaj">
             <p class="text-primary">
-                Zalogowany jako: ${pageContext.request.userPrincipal.name} |
+                Witaj: ${pageContext.request.userPrincipal.name} |
                 <a href="javascript:formSubmit()"> Logout</a>
             </p>
-
+            </div>
         </c:if>
         <!-- msg for login-->
         <!-- login form-->
         <c:if test="${pageContext.request.userPrincipal.name == null}">
             <div class="topright">
-                <form class="form-signin" name='loginForm' action="<c:url value='login' />" method='POST'>
+                <form class="form-signin" name='loginForm' action="<c:url value='/login' />" method='POST'>
                     <input type="text" id="inputEmail" placeholder="Login " name="login" required autofocus>
                     <input type="password" id="inputPassword" placeholder="Password" name="password" required>
                     <button type="submit">Zaloguj</button>
@@ -133,6 +156,17 @@
             </div>
         </c:if>
         <!-- login form-->
+    </div>
+
+<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN','ROLE_USER')">
+    <div class="topleftforLogged">
+        <div class="kontener">
+        <img src="/resources/images/koszyk.jpg" width="40" height="40">
+            <div class="wycentruj"> ${iloscMoichProduktow}</div>
+
+        </div>
+    </div>
+</sec:authorize>
     </div>
 </nav>
 </body>

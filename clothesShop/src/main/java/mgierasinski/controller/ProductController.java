@@ -1,10 +1,16 @@
 package mgierasinski.controller;
 
 
+import mgierasinski.domain.AppUser;
+import mgierasinski.domain.Bag;
 import mgierasinski.domain.Product;
+import mgierasinski.service.AppUserService;
+import mgierasinski.service.BagService;
 import mgierasinski.service.ProductService;
 import mgierasinski.service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.POST;
 import java.util.List;
 
 
@@ -23,6 +30,13 @@ public class ProductController {
 
     @Autowired
     QuantityService quantityService;
+
+    @Autowired
+    BagService bagService;
+
+    @Autowired
+    AppUserService appUserService;
+
 
 
     @RequestMapping(value = "/newProduct")
@@ -115,13 +129,10 @@ public class ProductController {
     public String showProduct(@RequestParam("productId") long id, Model model) {
 
 
+        System.out.println("1asdsadsadasd");
         Product product = productService.getProduct(id);
-        System.out.println(product.getName());
         model.addAttribute("product", product);
         model.addAttribute("quantity", quantityService.selectAllForProduct(id));
-
-        System.out.println(quantityService.selectAllForProduct(id).size());
-
 
         return "showSpecificProduct";
 
@@ -133,14 +144,44 @@ public class ProductController {
                                         @RequestParam("zmienRozmiar") String rozmiar, HttpServletRequest request) {
         String referer = request.getHeader("Referer");
 
-
-        System.out.println(id);
-        System.out.println(szt);
-        System.out.println(rozmiar);
         quantityService.changeOnlyProductQuantity(id, szt, rozmiar);
 
         return "redirect:" + referer;
     }
+
+    @RequestMapping(value = "/addToBag")
+    public String addProductToBag(@RequestParam("productId") long id,HttpServletRequest request,@RequestParam("size") String size) {
+
+        System.out.println("ADD TO BAG");
+        System.out.println("szajz "+size);
+        String referer = request.getHeader("Referer");
+        Bag bag=new Bag();
+        Product product = productService.getProduct(id);
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        AppUser appUser = appUserService.findByLogin(username);
+
+        System.out.println("adresssssssssssssssssssssssssssssssssssss " +appUser.getAddress());
+        System.out.println(product.getName());
+        bag.setAppUser(appUser);
+        bag.setProduct(product);
+        bag.setProductSize(size);
+
+
+        bagService.addBag(bag);
+
+
+        return "redirect:" + referer;
+
+
+    }
+
 
 
 }

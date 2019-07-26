@@ -104,9 +104,14 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.listProductsOrderPriceDesc();
     }
 
-    @Override
+    @Transactional
     public List<Product> searchForProducts(String search) {
         return productRepository.searchForProducts(search);
+    }
+
+    @Transactional
+    public List<Product> showProductsInMyBag(long id) {
+        return productRepository.showProductsInMyBag(id);
     }
 
 
