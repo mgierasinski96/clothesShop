@@ -49,6 +49,7 @@ public class ProductController {
             quantityService.removePrevious(productId);
             model.addAttribute("product", product);
 
+
         } else
             model.addAttribute("product", new Product());
 
@@ -67,7 +68,6 @@ public class ProductController {
                 System.out.println("Saving file: " + aFile.getOriginalFilename());
                 product.setData(aFile.getBytes());
                 productService.addProduct(product);
-
                 for (String size : sizes) {
                     productService.insertQS(quantity, size, product.getId());
                 }
@@ -174,13 +174,53 @@ public class ProductController {
         bag.setProductSize(size);
 
 
-        bagService.addBag(bag);
 
+      int obecnieSztuk=Integer.parseInt(quantityService.getActualQuantity(product.getId(),size));
+        quantityService.changeOnlyProductQuantity(product.getId(),Integer.toString(obecnieSztuk-1),size);
+        bagService.addBag(bag);
 
         return "redirect:" + referer;
 
-
     }
+
+
+    @RequestMapping(value="/showMyProducts")
+    public String showMyProducts(Model model)
+    {
+
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        if (!(username.equals("anonymousUser") || username.equals("admin") || username.equals("employee") || username.equals("user"))) {
+            AppUser appUser = appUserService.findByLogin(username);
+
+            model.addAttribute("myProducts",bagService.listBagForUser(appUser.getUserId()));
+
+
+        }
+
+        return "showMyProductsInBag";
+    }
+
+    @RequestMapping(value = "/deleteProductFromBag/{bagId}")
+    public String deleteProductFromBag(@RequestParam("bagId") long bagId,HttpServletRequest request) {
+        String referer = request.getHeader("Referer");
+
+            Bag bag=bagService.findById(bagId);
+
+        int obecnieSztuk=Integer.parseInt(quantityService.getActualQuantity(bag.getProduct().getId(),bag.getProductSize()));
+        System.out.println(obecnieSztuk);
+        quantityService.changeOnlyProductQuantity(bag.getProduct().getId(),Integer.toString(obecnieSztuk+1),bag.getProductSize());
+       bagService.removeBag(bagId);
+
+        return "redirect:" + referer;
+    }
+
 
 
 

@@ -44,7 +44,7 @@
         .kontener {
             position: relative;
             text-align: center;
-            font-size: 36px;
+            font-size: 48px;
             color: red;
         }
         .wycentruj {
@@ -123,7 +123,7 @@
             </script>
 
         </c:if>
-      
+
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <script>
                 function formSubmit() {
@@ -161,8 +161,9 @@
 <sec:authorize access="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN','ROLE_USER')">
     <div class="topleftforLogged">
         <div class="kontener">
-        <img src="/resources/images/koszyk.jpg" width="40" height="40">
-            <div class="wycentruj"> ${iloscMoichProduktow}</div>
+            <a href="/showMyProducts" >
+            <img src="/resources/images/koszyk.jpg" width="40" height="40" ></a>
+            <div class="wycentruj"> <a href="/showMyProducts"><text style="color:red">${iloscMoichProduktow}</text></a></div>
 
         </div>
     </div>

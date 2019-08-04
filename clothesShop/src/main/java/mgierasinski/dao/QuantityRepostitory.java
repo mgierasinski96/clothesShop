@@ -32,4 +32,7 @@ public interface QuantityRepostitory  extends JpaRepository<Quantity,Long> {
     @Query(value = "update quantityandsize qs set qs.quantity=:szt where qs.size=:rozmiar and productId=:productId",nativeQuery = true)
     void changeOnlyProductQuantity(@Param("productId") long productId,@Param("szt") String szt,@Param("rozmiar") String rozmiar);
 
+    @Query(value = "select qs.quantity from quantityandsize qs where qs.size=:rozmiar and productId=:productId",nativeQuery = true)
+    String getActualQuantity(@Param("productId") long productId,@Param("rozmiar") String rozmiar);
+
 }

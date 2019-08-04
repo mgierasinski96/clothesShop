@@ -35,4 +35,12 @@ public class QuantityServiceImpl implements QuantityService {
     public void changeOnlyProductQuantity(long productId, String szt, String rozmiar) {
         quantityRepostitory.changeOnlyProductQuantity(productId,szt,rozmiar);
     }
+
+    @Transactional
+    public String getActualQuantity(long productId, String rozmiar) {
+        return quantityRepostitory.getActualQuantity(productId,rozmiar);
+    }
+
+
+
 }

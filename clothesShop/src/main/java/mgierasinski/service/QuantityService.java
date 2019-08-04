@@ -11,7 +11,7 @@ void removePrevious(long productId);
 
 List<Quantity> selectAllForProduct(long productId);
     void changeOnlyProductQuantity(long productId,String szt,String rozmiar);
-
+String getActualQuantity(long productId,String rozmiar);
 
 
 

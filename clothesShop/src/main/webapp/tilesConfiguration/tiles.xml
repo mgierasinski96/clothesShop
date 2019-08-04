@@ -87,6 +87,11 @@
         <put-attribute name="body" value="/views/searchProducts.jsp" />
     </definition>
 
+    <definition name="showMyProductsInBag" extends="base.definition">
+        <put-attribute name="title" value="ShowMyProductsInBag" />
+        <put-attribute name="body" value="/views/showMyProductsInBag.jsp" />
+    </definition>
+
 
 
  
