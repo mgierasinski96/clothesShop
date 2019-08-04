@@ -46,6 +46,7 @@ public class HibernateConfiguration {
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.default_schema", "public");
+        properties.put("hibernate.jdbc.time_zone","UTC");
         return properties;
     }
 

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import javax.sql.DataSource;
-import java.io.IOException;
 import java.sql.Blob;
 import java.util.List;
 
@@ -113,6 +112,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> showProductsInMyBag(long id) {
         return productRepository.showProductsInMyBag(id);
     }
+
+
 
 
 }

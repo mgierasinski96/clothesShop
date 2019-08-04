@@ -19,4 +19,14 @@ public interface BagRepository extends JpaRepository<Bag,Long> {
     @Query(value="select * from bag b where b.appUserIdBag=:userId",nativeQuery = true)
     List<Bag> listBagForUser(@Param("userId") long userId);
 
+    @Query(value = "select * from clothesshop_tracker.bag where TIMESTAMPDIFF(MINUTE,clothesshop_tracker.bag.data,UTC_TIMESTAMP())>=2; ", nativeQuery = true)
+    @org.springframework.transaction.annotation.Transactional
+    List<Bag> selectMoreEq2mins();
+
+
+
+    @Query(value = "delete FROM clothesshop_tracker.bag where TIMESTAMPDIFF(MINUTE,clothesshop_tracker.bag.data,UTC_TIMESTAMP())>=2; ", nativeQuery = true)
+    @org.springframework.transaction.annotation.Transactional
+    @Modifying
+    void deleteMoreEq2mins();
 }

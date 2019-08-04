@@ -2,6 +2,12 @@ package mgierasinski.domain;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.TimeZone;
 
 @Entity
 @Table(name="bag")
@@ -23,6 +29,14 @@ public class Bag {
 
     @Column(name="productSize")
     private String productSize;
+
+    @Column(name="data")
+    private Date date;
+public Bag()
+{
+    this.date=new Date();
+}
+
 
     public String getProductSize() {
         return productSize;
@@ -54,5 +68,24 @@ public class Bag {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Bag{" +
+                "bagId=" + bagId +
+                ", product=" + product +
+                ", appUser=" + appUser +
+                ", productSize='" + productSize + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
