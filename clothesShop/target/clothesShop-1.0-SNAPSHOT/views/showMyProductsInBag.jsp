@@ -17,6 +17,7 @@
     </style>
 </head>
 <body>
+<c:if test="${myProductsSize>0}">
 
 <table cellpadding="30px">
 
@@ -49,12 +50,14 @@
         <c:set var="total" value="${total + bag.product.price}" />
     </c:forEach>
     <p class="ab24">Podsumowanie </p>
-  <p class="ab18">Do zapłaty: ${total}zł</p>
-
-
-
-
-
-
+<form:form method="post" action="payPayment?total=${total}">
+  <p class="ab18">Do zapłaty: ${total}zł <input type="submit" value="Zapłać"/></p>
+</form:form>
+</c:if>
+<c:if test="${myProductsSize == null || myProductsSize == 0 }">
+    <p class="ab24">Twój koszyk jest pusty</p>
+</c:if>
 </body>
+
+
 </html>

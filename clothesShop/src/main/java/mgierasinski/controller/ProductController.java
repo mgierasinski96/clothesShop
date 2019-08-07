@@ -200,6 +200,7 @@ public class ProductController {
             AppUser appUser = appUserService.findByLogin(username);
 
             model.addAttribute("myProducts",bagService.listBagForUser(appUser.getUserId()));
+            model.addAttribute("myProductsSize",bagService.listBagForUser(appUser.getUserId()).size());
 
 
         }

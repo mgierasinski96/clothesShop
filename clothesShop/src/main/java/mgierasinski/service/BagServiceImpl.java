@@ -37,5 +37,10 @@ public class BagServiceImpl implements  BagService{
 bagRepository.delete(bagId);
     }
 
+    @Override
+    public void deleteBagForUser(long userId) {
+        bagRepository.deleteBagForUser(userId);
+    }
+
 
 }

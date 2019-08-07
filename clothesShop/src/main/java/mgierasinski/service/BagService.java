@@ -11,4 +11,5 @@ public interface BagService {
 
     List<Bag> listBagForUser(long userId);
     void removeBag(long bagId);
+    void deleteBagForUser(long userId);
 }

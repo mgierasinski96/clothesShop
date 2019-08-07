@@ -16,6 +16,12 @@ public interface BagRepository extends JpaRepository<Bag,Long> {
 
     Bag findByBagId(long id);
 
+
+    @Query(value = "delete from bag where appUserIdBag=:userId",nativeQuery = true)
+    @Modifying
+    @Transactional
+    void deleteBagForUser(@Param("userId") long appUserId);
+
     @Query(value="select * from bag b where b.appUserIdBag=:userId",nativeQuery = true)
     List<Bag> listBagForUser(@Param("userId") long userId);
 

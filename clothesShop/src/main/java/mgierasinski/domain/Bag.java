@@ -22,6 +22,10 @@ public class Bag {
     @JoinColumn(name = "productIdBag")
     private Product product;
 
+    @ManyToOne
+    @JoinColumn(name = "paymentId")
+    private Payment payment;
+
 
     @ManyToOne
     @JoinColumn(name = "appUserIdBag")
@@ -76,6 +80,14 @@ public Bag()
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     @Override
