@@ -92,6 +92,16 @@
         <put-attribute name="body" value="/views/showMyProductsInBag.jsp" />
     </definition>
 
+    <definition name="showUsers" extends="base.definition">
+        <put-attribute name="title" value="ShowUsers" />
+        <put-attribute name="body" value="/views/showUsers.jsp" />
+    </definition>
+
+    <definition name="showOrderHistory" extends="base.definition">
+        <put-attribute name="title" value="ShowOrderHistory" />
+        <put-attribute name="body" value="/views/showOrderHistory.jsp" />
+    </definition>
+
 
 
  

@@ -1,6 +1,7 @@
 package mgierasinski.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="payment")
@@ -17,6 +18,13 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "appUserId")
     AppUser appUser;
+
+    @Column(name="paymentDate")
+    private Date paymentDate;
+    public Payment()
+    {
+        this.paymentDate=new Date();
+    }
 
     public long getPaymentId() {
         return paymentId;
@@ -40,5 +48,13 @@ public class Payment {
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
+    }
+
+    public Date getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(Date paymentDate) {
+        this.paymentDate = paymentDate;
     }
 }

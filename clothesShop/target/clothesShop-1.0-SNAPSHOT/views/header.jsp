@@ -87,6 +87,7 @@
                 </a>
 </sec:authorize>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/showAllUsers">Pokaż wszystkich użytkowników</a>
                     <a class="dropdown-item" href="/showAllProducts">Pokaż wszystkie produkty</a>
                     <a class="dropdown-item" href="/newProduct">Dodaj nowy produkt</a>
                     <div class="dropdown-divider"></div>

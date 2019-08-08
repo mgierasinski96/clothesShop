@@ -78,6 +78,15 @@ public class AppUserController {
         }
     }
 
+    @RequestMapping(value = "/showAllUsers")
+    public String showAllUsers(Model model)
+    {
+        model.addAttribute("allUsers",appUserService.listAppUser());
+
+        return "showUsers";
+    }
+
+
 
 
 }
