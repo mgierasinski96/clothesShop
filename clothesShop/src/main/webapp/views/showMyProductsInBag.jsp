@@ -26,6 +26,7 @@
     <th>Cena</th>
     <th>Rozmiar</th>
     <c:forEach items="${myProducts}" var="bag">
+
         <tr>
             <td><a href="/showSpecificProduct/.html?productId=${bag.product.id}">><img width="150" height="150"
                                                                                        src="getProductPhoto/<c:out value='${bag.product.id}'/> "></a>

@@ -17,21 +17,31 @@ public interface BagRepository extends JpaRepository<Bag,Long> {
     Bag findByBagId(long id);
 
 
-    @Query(value = "delete from bag where appUserIdBag=:userId",nativeQuery = true)
+    @Query(value = "update bag b set b.paid=true where appUserIdBag=:userId",nativeQuery = true)
     @Modifying
     @Transactional
-    void deleteBagForUser(@Param("userId") long appUserId);
+    void  payForBag(@Param("userId") long appUserId);
 
-    @Query(value="select * from bag b where b.appUserIdBag=:userId",nativeQuery = true)
+    @Query(value = "update bag b set b.paymentId=:paymentId where appUserIdBag=:userId and b.paid is null",nativeQuery = true)
+    @Modifying
+    @Transactional
+    void  payForBagPayment(@Param("userId") long appUserId,@Param("paymentId") long paymentId);
+
+    @Query(value="select * from bag b where b.appUserIdBag=:userId and b.paid is null",nativeQuery = true)
     List<Bag> listBagForUser(@Param("userId") long userId);
 
-    @Query(value = "select * from clothesshop_tracker.bag where TIMESTAMPDIFF(MINUTE,clothesshop_tracker.bag.data,UTC_TIMESTAMP())>=2; ", nativeQuery = true)
+    @Query(value="select * from bag b where b.paymentId=:paymentId and b.paid is true",nativeQuery = true)
+    List<Bag> listBagWherePayment(@Param("paymentId") long paymentId);
+
+    @Query(value = "select * from clothesshop_tracker.bag where TIMESTAMPDIFF(MINUTE,clothesshop_tracker.bag.data,UTC_TIMESTAMP())>=2 and paid is null; ", nativeQuery = true)
     @org.springframework.transaction.annotation.Transactional
     List<Bag> selectMoreEq2mins();
 
 
 
-    @Query(value = "delete FROM clothesshop_tracker.bag where TIMESTAMPDIFF(MINUTE,clothesshop_tracker.bag.data,UTC_TIMESTAMP())>=2; ", nativeQuery = true)
+
+
+    @Query(value = "delete FROM clothesshop_tracker.bag where TIMESTAMPDIFF(MINUTE,clothesshop_tracker.bag.data,UTC_TIMESTAMP())>=2 and paid is null; ", nativeQuery = true)
     @org.springframework.transaction.annotation.Transactional
     @Modifying
     void deleteMoreEq2mins();

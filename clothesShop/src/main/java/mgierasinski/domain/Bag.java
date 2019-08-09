@@ -41,6 +41,16 @@ public Bag()
     this.date=new Date();
 }
 
+    @Column(name="paid")
+    private Boolean paid;
+
+    public Boolean getPaid() {
+        return paid;
+    }
+
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
+    }
 
     public String getProductSize() {
         return productSize;

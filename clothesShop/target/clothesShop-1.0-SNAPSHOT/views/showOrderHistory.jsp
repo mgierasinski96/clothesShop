@@ -64,7 +64,11 @@
             <tr>
                 <td>${payment.paymentDate}</td>
                 <td>${payment.charge}zł</td>
-                <td>KLIK</td>
+                <td>
+                    <form:form action="paymentDetails?paymentId=${payment.paymentId}">
+                        <input type="submit" value="Pokaż szczegóły"/>
+                    </form:form>
+                </td>
 
             </tr>
         <tbody>

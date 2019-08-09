@@ -37,16 +37,16 @@
 
     </style>
     <link href="http://pl.allfont.net/allfont.css?fonts=arial-black" rel="stylesheet" type="text/css" />
-    <p class="ab36"> Ilość produktów  ${bluzySize} </p>
+    <p class="ab36"> Ilość produktów  ${productSize} </p>
 </head>
 <body>
 <table cellpadding="30px" >
     <% int i=1; %>
-<c:forEach items="${bluzy}" var="bluza">
+<c:forEach items="${product}" var="product">
 
     <td>
-    <div class="relative"><a href="/showSpecificProduct/.html?productId=${bluza.id}">><img width="380" height="350" src="getProductPhoto/<c:out value='${bluza.id}'/> "></a>
-        <div class="absolute" ><p class="ab">${bluza.name} ${bluza.price}zł</p></div>
+    <div class="relative"><a href="/showSpecificProduct/.html?productId=${product.id}">><img width="380" height="350" src="getProductPhoto/<c:out value='${product.id}'/> "></a>
+        <div class="absolute" ><p class="ab">${product.name} ${product.price}zł</p></div>
     </div>
     </td>
     <%

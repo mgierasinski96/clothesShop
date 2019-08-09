@@ -43,14 +43,19 @@ public class PaymentController {
             AppUser appUser = appUserService.findByLogin(username);
 
 
-            Payment payment= new Payment();
+            Payment payment = new Payment();
+            System.out.println("pejment id" + payment.getPaymentId());
             payment.setAppUser(appUser);
             payment.setCharge(total);
             paymentService.addPayment(payment);
-            bagService.deleteBagForUser(appUser.getUserId());
+            bagService.payForBagPayment(appUser.getUserId(), payment.getPaymentId());
+            bagService.payBagForUser(appUser.getUserId());
 
-        }
+        }//tu zamknalem
+
 
         return "redirect:" + referer;
     }
+
+
 }

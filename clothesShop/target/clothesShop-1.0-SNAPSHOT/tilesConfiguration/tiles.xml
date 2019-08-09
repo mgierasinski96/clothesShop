@@ -39,15 +39,9 @@
         <put-attribute name="body" value="/views/showAllProducts.jsp" />
     </definition>
 
-    <definition name="spodnie" extends="base.definition">
-        <put-attribute name="title" value="Spodnie" />
-        <put-attribute name="body" value="/views/spodnie.jsp" />
-    </definition>
-
-
-    <definition name="bluzy" extends="base.definition">
-        <put-attribute name="title" value="Bluzy" />
-        <put-attribute name="body" value="/views/bluzy.jsp" />
+    <definition name="product" extends="base.definition">
+        <put-attribute name="title" value="Product" />
+        <put-attribute name="body" value="/views/product.jsp" />
     </definition>
 
 
@@ -100,6 +94,11 @@
     <definition name="showOrderHistory" extends="base.definition">
         <put-attribute name="title" value="ShowOrderHistory" />
         <put-attribute name="body" value="/views/showOrderHistory.jsp" />
+    </definition>
+
+    <definition name="showPaymentHistorical" extends="base.definition">
+        <put-attribute name="title" value="ShowPaymentHistorical" />
+        <put-attribute name="body" value="/views/showPaymentHistorical.jsp" />
     </definition>
 
 

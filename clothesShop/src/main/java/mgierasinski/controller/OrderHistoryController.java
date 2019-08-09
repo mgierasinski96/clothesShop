@@ -1,5 +1,6 @@
 package mgierasinski.controller;
 
+import mgierasinski.service.BagService;
 import mgierasinski.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ public class OrderHistoryController {
     @Autowired
     PaymentService paymentService;
 
+    @Autowired
+    BagService bagService;
+
     @RequestMapping(value="/orderHistory")
     public String showOrderHistoryForUser(@RequestParam("userId") long userId, Model model,
     @RequestParam("firstName") String firstName,@RequestParam("lastName") String lastName)
@@ -22,5 +26,16 @@ public class OrderHistoryController {
         model.addAttribute("orderHistoryForUser",paymentService.listPaymentForUser(userId));
         model.addAttribute("orderHistoryForUserSize",paymentService.listPaymentForUser(userId).size());
         return "showOrderHistory";
+    }
+
+
+    @RequestMapping(value="/paymentDetails")
+    public String showPaymentDetails(@RequestParam("paymentId") long paymentId,Model model)
+    {
+        model.addAttribute("myProducts",bagService.listBagWherePayment(paymentId));
+        model.addAttribute("myProductsSize",bagService.listBagWherePayment(paymentId).size());
+        System.out.println(bagService.listBagWherePayment(paymentId).size());
+
+        return "showPaymentHistorical";
     }
 }

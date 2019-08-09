@@ -32,14 +32,24 @@ public class BagServiceImpl implements  BagService{
     }
 
     @Override
+    public List<Bag> listBagWherePayment(long paymentId) {
+        return bagRepository.listBagWherePayment(paymentId);
+    }
+
+    @Override
     @Transactional
     public void removeBag(long bagId) {
 bagRepository.delete(bagId);
     }
 
     @Override
-    public void deleteBagForUser(long userId) {
-        bagRepository.deleteBagForUser(userId);
+    public void payBagForUser(long userId) {
+        bagRepository.payForBag(userId);
+    }
+
+    @Override
+    public void payForBagPayment(long userId,long paymentId) {
+        bagRepository.payForBagPayment(userId,paymentId);
     }
 
 

@@ -10,6 +10,9 @@ public interface BagService {
     void addBag(Bag bag);
 
     List<Bag> listBagForUser(long userId);
+    List<Bag> listBagWherePayment(long paymentId);
     void removeBag(long bagId);
-    void deleteBagForUser(long userId);
+
+    void payBagForUser(long userId);
+    void payForBagPayment(long userId,long paymentId);
 }

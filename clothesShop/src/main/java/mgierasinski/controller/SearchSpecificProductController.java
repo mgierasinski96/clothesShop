@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class SearchProductController {
+public class SearchSpecificProductController {
 
     @Autowired
     ProductService productService;
@@ -16,21 +16,21 @@ public class SearchProductController {
     @RequestMapping(value="/bluzy")
     public String showBluzy(Model model)
     {
-        model.addAttribute("bluzy",productService.listAccurateProduct("bluza"));
-        model.addAttribute("bluzySize",productService.listAccurateProduct("bluza").size());
+        model.addAttribute("product",productService.listAccurateProduct("bluza"));
+        model.addAttribute("productSize",productService.listAccurateProduct("bluza").size());
 
 
-        return "bluzy";
+        return "specificProducts";
     }
 
     @RequestMapping(value="/spodnie")
     public String showSpodnie(Model model)
     {
-        model.addAttribute("spodnie",productService.listAccurateProduct("spodnie"));
-        model.addAttribute("spodnieSize",productService.listAccurateProduct("spodnie").size());
+        model.addAttribute("product",productService.listAccurateProduct("spodnie"));
+        model.addAttribute("productSize",productService.listAccurateProduct("spodnie").size());
 
 
-        return "spodnie";
+        return "specificProducts";
     }
 
     @RequestMapping("/szukam")
