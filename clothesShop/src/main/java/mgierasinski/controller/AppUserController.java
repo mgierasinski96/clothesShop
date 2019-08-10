@@ -2,12 +2,15 @@ package mgierasinski.controller;
 
 import mgierasinski.domain.AppUser;
 import mgierasinski.domain.Bag;
+import mgierasinski.domain.Payment;
 import mgierasinski.domain.VerificationToken;
 import mgierasinski.service.AppUserService;
 import mgierasinski.service.EmailSenderService;
 import mgierasinski.service.VerificationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,6 +62,8 @@ public class AppUserController {
                 return "successfulRegistration";
 
             }
+
+
         }
 
         return "registerAppUser";
@@ -69,8 +74,6 @@ public class AppUserController {
         VerificationToken token = verificationTokenService.findByConfirmationToken(verificationToken);
         if (token != null) {
             AppUser appUser = appUserService.findByEmail(token.getAppUser().getEmail());
-
-
             appUserService.activateAppUser(appUser);
             return "accountActivated";
         } else {
@@ -86,6 +89,39 @@ public class AppUserController {
         return "showUsers";
     }
 
+
+    @RequestMapping(value = "/showMyData")
+    public String showMyData(Model model)
+    {
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+
+        if (!(username.equals("anonymousUser") || username.equals("admin") || username.equals("employee") || username.equals("user"))) {
+            AppUser appUser = appUserService.findByLogin(username);
+            model.addAttribute("appUser",appUser);
+
+
+        }
+
+        return "editAppUser";
+    }
+
+
+    @RequestMapping(value = "/editAppUser")
+    public String editAppUser(@ModelAttribute("appUser") AppUser appUser, BindingResult result)
+    {
+        if (result.getErrorCount() == 0) {
+            appUserService.editAppUser(appUser);
+            return "dataChanged";
+        }
+
+        return "redirect:showMyData.html";
+    }
 
 
 

@@ -101,6 +101,16 @@
         <put-attribute name="body" value="/views/showPaymentHistorical.jsp" />
     </definition>
 
+    <definition name="editAppUser" extends="base.definition">
+        <put-attribute name="title" value="EditAppUser" />
+        <put-attribute name="body" value="/views/editAppUser.jsp" />
+    </definition>
+
+    <definition name="dataChanged" extends="base.definition">
+        <put-attribute name="title" value="DataChanged" />
+        <put-attribute name="body" value="/views/dataChanged.jsp" />
+    </definition>
+
 
 
  

@@ -30,9 +30,15 @@
             right: 0%;
         }
 
+        .topleftCenterforLogged {
+            position: absolute;
+            top: 22%;
+            right: 22%;
+        }
+
         .toprightWitaj{
             position: absolute;
-            top: 25%;
+            top: 10%;
             right: 6%;
         }
 
@@ -137,7 +143,7 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
 
-            <div class="toprightWitaj">
+            <div class="topleftCenterforLogged">
             <p class="text-primary">
                 Witaj: ${pageContext.request.userPrincipal.name} |
                 <a href="javascript:formSubmit()"> Logout</a>
@@ -167,6 +173,21 @@
             <div class="wycentruj"> <a href="/showMyProducts"><text style="color:red">${iloscMoichProduktow}</text></a></div>
 
         </div>
+    </div>
+</sec:authorize>
+<sec:authorize access="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN','ROLE_USER')">
+    <div class="toprightWitaj">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown1" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            Zarządzaj kontem
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/myOrderHistory">Historia zamówień</a>
+            <a class="dropdown-item" href="/showMyData">Edytuj dane</a>
+
+        </div>
+    </li>
     </div>
 </sec:authorize>
     </div>
