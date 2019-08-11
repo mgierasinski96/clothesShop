@@ -27,6 +27,7 @@ public class Quantity {
     @Column(name = "size")
     private String size;
 
+
     @Column(name = "quantity")
     private String quantity;
 
@@ -50,5 +51,9 @@ public class Quantity {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

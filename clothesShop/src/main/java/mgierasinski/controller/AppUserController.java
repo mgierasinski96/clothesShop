@@ -63,7 +63,6 @@ public class AppUserController {
 
             }
 
-
         }
 
         return "registerAppUser";

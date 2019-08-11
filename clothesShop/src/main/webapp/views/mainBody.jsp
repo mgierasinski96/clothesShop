@@ -16,17 +16,21 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/resources/images/buty.jpg" width="400px" height="400px">
+                <a href="/showSpecificProduct/.html?productId=14">
+                <img src="/resources/images/bluzaKaruleza.jpg" width="400px" height="400px">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a href="/showSpecificProduct/.html?productId=17">
+                <img src="/resources/images/dresyKaruzela.jpg" width="400px" height="400px">
+                </a>
+
 
             </div>
             <div class="carousel-item">
-                <img src="/resources/images/zegarek.jpg" width="400px" height="400px">
-
-
-            </div>
-            <div class="carousel-item">
-                <img src="/resources/images/plecak.jpg" width="400px" height="400px">
-
+                <a href="/showSpecificProduct/.html?productId=24">
+                <img src="/resources/images/bluzaMoroKaruzela.jpg" width="400px" height="400px">
+                </a>
 
             </div>
         </div>

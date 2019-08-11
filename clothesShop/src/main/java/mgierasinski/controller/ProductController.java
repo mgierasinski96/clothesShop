@@ -4,6 +4,7 @@ package mgierasinski.controller;
 import mgierasinski.domain.AppUser;
 import mgierasinski.domain.Bag;
 import mgierasinski.domain.Product;
+import mgierasinski.domain.Quantity;
 import mgierasinski.service.AppUserService;
 import mgierasinski.service.BagService;
 import mgierasinski.service.ProductService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Null;
 import javax.ws.rs.POST;
 import java.util.List;
 
@@ -144,10 +146,39 @@ public class ProductController {
                                         @RequestParam("zmienRozmiar") String rozmiar, HttpServletRequest request) {
         String referer = request.getHeader("Referer");
 
-        quantityService.changeOnlyProductQuantity(id, szt, rozmiar);
+       String actual=quantityService.getActualQuantity(id,rozmiar);
+       try
+       {
+           if(!(actual.equals(null))) {
+
+               quantityService.changeOnlyProductQuantity(id, szt, rozmiar);
+           }
+       }
+
+       catch(NullPointerException ex)//gdyb rozmiar nie istnieje czyli nullpointer
+        {
+            Quantity quantity=new Quantity();
+            quantity.setProduct(productService.getProduct(id));
+            quantity.setQuantity(szt);
+            quantity.setSize(rozmiar);
+            quantityService.addQuantity(quantity);
+        }
 
         return "redirect:" + referer;
     }
+
+    @RequestMapping(value = "/changeProductPrice")
+    public String changeProductPrice(@RequestParam("productId") long id, @RequestParam("newPrice") String newPrice,HttpServletRequest request) {
+
+
+
+        String referer = request.getHeader("Referer");
+
+        productService.changeProductPrice(id,newPrice);
+
+        return "redirect:" + referer;
+    }
+
 
 
 }

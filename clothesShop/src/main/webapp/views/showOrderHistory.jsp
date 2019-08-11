@@ -52,7 +52,7 @@
         <thead>
         <tr>
             <th scope="col">Data</th>
-            <th scope="col">Należność</th>
+            <th scope="col">Zapłacono</th>
             <th scope="col">Szczegóły</th>
 
         </tr>

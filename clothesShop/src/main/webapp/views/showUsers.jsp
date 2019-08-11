@@ -71,7 +71,7 @@
                     <input type="submit" value="Pokaż"/>
                 </form:form>
             </td>
-            <td><a href="registerAppUser.html?userId=${user.userId}">Edytuj</a>
+            <td>
                 <a href="deleteUser/${user.userId}.html"
                    onclick="if (!(confirm('Czy chcesz usunąć użytkownika i całą historię zamowień ? ?')))
                            return false">Usuń</a></td>

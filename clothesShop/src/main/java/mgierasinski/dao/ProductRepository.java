@@ -54,6 +54,10 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query(value="select * from product p join user u join bag b where b.appUserIdBag=u.userId and b.productIdBag=p.productId and u.userId=:id and b.paid is null",nativeQuery = true)
     List<Product> showProductsInMyBag(@Param("id") long id);
 
+    @Query(value ="update product set productPrice=:newPrice where productId=:productId",nativeQuery = true)
+    @Modifying
+    @Transactional
+    void changeProductPrice(@Param("productId") long productId,@Param("newPrice") String newPrice);
 
 
 

@@ -113,7 +113,10 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.showProductsInMyBag(id);
     }
 
-
+    @Override
+    public void changeProductPrice(long productId, String newPrice) {
+        productRepository.changeProductPrice(productId,newPrice);
+    }
 
 
 }

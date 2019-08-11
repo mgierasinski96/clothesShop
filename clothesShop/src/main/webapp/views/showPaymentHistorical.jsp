@@ -35,7 +35,7 @@
     <c:forEach var="bag" items="${myProducts}">
         <c:set var="total" value="${total + bag.product.price}" />
     </c:forEach>
-        <p class="ab24">Zapłacono: ${total}zł</p>
+        <p class="ab24">Aktualna wartość: ${total}zł</p>
 
 </body>
 

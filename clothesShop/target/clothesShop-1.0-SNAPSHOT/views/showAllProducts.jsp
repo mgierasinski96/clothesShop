@@ -48,14 +48,20 @@
         </tr>
         </thead>
         <c:forEach items="${allProducts}" var="product">
-        <form action="/changeProductQuantity" >
+
         <tbody>
         <tr>
 
 
             <td><img width="100" height="100" src="getProductPhoto/<c:out value='${product.id}'/>"></td>
             <td>${product.name}</td>
-            <td> ${product.price}</td>
+            <td> ${product.price}
+                <form action="/changeProductPrice" >
+                    <input type="hidden" value="${product.id}" name="productId">
+                    <input type="text" size="3" placeholder="cena" maxlength="7" name="newPrice">
+                    <input type="submit" name="submit" value="Potwierdź">
+                </form>
+            </td>
             <td> ${product.productType}</td>
             <td>
             <c:forEach items="${product.quantity}" var="productSize">
@@ -64,10 +70,12 @@
 
 
             </c:forEach>
+                <form action="/changeProductQuantity" >
                 <input type="hidden" value="${product.id}" name="productId">
                 <input type="text" size="3" placeholder="rozmiar" maxlength="2" name="zmienRozmiar">
                 <input type="text" size="2" placeholder="szt" name="zmienSzt">
                 <input type="submit" name="submit" value="Potwierdź">
+                </form>
             </td>
             <td><a href="newProduct.html?productId=${product.id}">Edytuj</a>
             <a href="delete/${product.id}.html"
@@ -76,7 +84,7 @@
         </tr>
 
         </tbody>
-        </form>
+
         </c:forEach>
     </table>
 

@@ -37,6 +37,6 @@ public interface ProductService {
     List<Product> searchForProducts(String search);
 
     List<Product> showProductsInMyBag(long id);
-
+void changeProductPrice(long productId,String newPrice);
 
 }

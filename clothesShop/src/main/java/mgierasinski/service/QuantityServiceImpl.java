@@ -26,6 +26,11 @@ public class QuantityServiceImpl implements QuantityService {
         quantityRepostitory.deletePrevious(productId);
     }
 
+    @Override
+    public void addQuantity(Quantity quantity) {
+        quantityRepostitory.save(quantity);
+    }
+
     @Transactional
     public List<Quantity> selectAllForProduct(long productId) {
         return quantityRepostitory.selectAllForProduct(productId);
